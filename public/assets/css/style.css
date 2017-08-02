@@ -1,0 +1,17 @@
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+  padding-top: 50px;
+  padding-bottom: 20px;
+}
+
+
+/* HEADING */
+.jumbotron {
+	background: url("../images/breagle.jpg") no-repeat center center;
+	background-size: 100%;
+}
+
+.display-3,
+.jumbotron p {
+	color: #fff;
+}
