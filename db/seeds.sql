@@ -1,0 +1,1 @@
+INSERT INTO cars (make, model, year, color, miles, price) VALUES ("Toyota", "Prius", 2010, "Gold", 50000, 12000);
