@@ -4,7 +4,7 @@ var express = require("express");
 var router = express.Router();
 
 // Importing the models directory
-var db = require("../models/car.js");
+var db = require("../models/");
 
 // Extracts the sequelize connection from the models object
 // var sequelizeConnection = db.sequelize;
@@ -15,13 +15,19 @@ var db = require("../models/car.js");
 // Create all of our routes and set up logic within those routes where required
 // Routes
 // GET route
+// get route -> index
 router.get("/", function(req, res) {
+  // send us to the next get function instead.
+  res.redirect("/cars");
+});
+
+router.get("/cars", function(req, res) {
 	// findAll returns all entries for a table (cars) when used with no options
     // Getting an ERROR here "Cannot read property 'findAll' of undefined"
-	db.Car.findAll({}).then(function(data) {
-
+	db.Car.findAll().then(function(dbCar) {
+        console.log(dbCar);
 		var hbsObject = {
-			cars: data
+			cars: dbCar
 		};
 		// We have access to the burgers as an argument inside of the callback function.
 		res.render("index", hbsObject);
@@ -29,7 +35,7 @@ router.get("/", function(req, res) {
 });
 
 // POST route to making/saving a new Car
-router.post("/", function(req, res) {
+router.post("/cars/create", function(req, res) {
 	// Create takes an argument of an object describing the car we want to insert into our table. In this case we want to pass an object with the car's specs
 	db.Car.create({
 		make: req.body.make,
@@ -46,7 +52,7 @@ router.post("/", function(req, res) {
 });
 
 // PUT route for updating a cars's sold status
-router.put("/:id", function(req, res) {
+router.put("/cars/update", function(req, res) {
 	// Update takes in 2 arguments, an object describing the properties we want to update, and a "where" object describing the Burger we want to update
 	db.Car.update({
 		sold: req.body.sold
