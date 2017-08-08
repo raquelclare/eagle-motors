@@ -17,6 +17,26 @@ router.get("/", function(req, res) {
   });
 });
 
+router.get("/view-cars", function(req, res) {
+  car.selectAll(function(data) {
+    var hbsObject = {
+      cars: data
+    };
+    console.log("object: ", hbsObject);
+    res.render("view-cars.handlebars", hbsObject);
+  });
+});
+
+router.get("/admin", function(req, res) {
+  car.selectAll(function(data) {
+    var hbsObject = {
+      cars: data
+    };
+    console.log("object: ", hbsObject);
+    res.render("admin.handlebars", hbsObject);
+  });
+});
+
 //insert a car
 router.post("/", function(req, res) {
   car.insertOne([

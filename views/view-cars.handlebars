@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-4" id="car-col">
+            <h2>Car Inventory</h2>
+            <ul>
+                {{#each cars}} {{#unless this.sold}}
+                <li>
+                    {{this.year}} 
+                    {{this.color}} 
+                    {{this.make}} 
+                    {{this.model}} - 
+                    {{this.miles}} miles - 
+                    ${{this.price}}
+                </li>
+                {{/unless}} {{/each}}
+            </ul>
+        </div>
+    </div>
+</div>
