@@ -15,6 +15,7 @@ app.use(express.static(__dirname + "./public"));
 // Body Parser
 // Setting up Express app to handle data parsing
 // app.use(bodyParser.json());
+// parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 // app.use(bodyParser.text());
 // app.use(bodyParser.json({ type: "application/vnd.api+json" }));

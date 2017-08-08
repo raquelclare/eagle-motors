@@ -16,10 +16,14 @@ var db = require("../models/");
 // Routes
 // GET route
 // get route -> index
-router.get("/", function(req, res) {
-  // send us to the next get function instead.
-  res.redirect("/cars");
-});
+// router.get("/", function(req, res) {
+//   // send us to the next get function instead.
+//   res.redirect("/cars");
+// });
+
+// router.get("/", function(req, res) {
+//     res.render("../public/index.html");
+//   });
 
 router.get("/cars", function(req, res) {
 	// findAll returns all entries for a table (cars) when used with no options
