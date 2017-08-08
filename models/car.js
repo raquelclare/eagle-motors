@@ -1,45 +1,28 @@
-// My Sequelize Car model
-module.exports = function (sequelize, DataTypes) {
-    var Car = sequelize.define("cars", {
-        make: {
-            type: DataTypes.STRING,
-            // Add a flag for the burger_name attribute to prevent this field from being null
-            allowNull: false,
-            // Add a validation for the burger_name attribute to make sure it's at least one character,
-            // but no more than 140 characters
-            validate: {
-                len: [1]
-            }
-        },
-        model: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            validate: {
-                len: [1]
-            }
-        },
-        year: {
-            type: DataTypes.INTEGER,
-            allowNull: false
-        },
-        color: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        miles: {
-            type: DataTypes.INTEGER,
-            allowNull: false
-        },
-        price: {
-            type: DataTypes.DECIMAL,
-            allowNull: false
-        },
-        sold: {
-            type: DataTypes.BOOLEAN,
-            // Add a flag for devoured so that it's false by default if not given a value
-            defaultValue: false
-        }
+// Import the orm to create functions that will interact with the database
+var orm = require("../config/orm.js");
+
+var car = {
+  selectAll: function(cb) {
+    orm.selectAll("cars", function(res) {
+      cb(res);
     });
-    return Car;
-}
-// Car.sync();
+  },
+  insertOne: function(cols, vals, cb) {
+    orm.insertOne("cars", cols, vals, function(res) {
+      cb(res);
+    });
+  },
+  updateOne: function(objColVals, condition, cb) {
+    orm.updateOne("cars", objColVals, condition, function(res) {
+      cb(res);
+    });
+  },
+  delete: function(condition, cb) {
+    orm.delete("cars", condition, function(res) {
+      cb(res);
+    });
+  }
+};
+
+// Export the database functions for the controller
+module.exports = car;
