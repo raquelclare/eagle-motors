@@ -1,3 +1,6 @@
+console.log("hello");
+var request = require("../controllers/cars_controller.js");
+
 $(document).ready(function() {
 
     // GRABBING DATA
@@ -67,25 +70,25 @@ $(document).ready(function() {
     // This code is currently for the admin page but needs to also be added (without any buttons) to view-cars
     // All of this needs to be edited to match CARS instead of Posts
     // carContainer holds all of our cars
-    var blogContainer = $(".blog-container");
+    var carContainer = $(".car-container");
     // // IF we end up using a pregen list for car makes
     // var carMakeSelect = $("#make");
     // Click events for the edit and delete buttons
-    $(document).on("click", "button.delete", handlePostDelete);
-    $(document).on("click", "button.edit", handlePostEdit);
-    postCategorySelect.on("change", handleCategoryChange);
-    var posts;
+    $(document).on("click", "button.delete", handleCarDelete);
+    $(document).on("click", "button.edit", handleCarEdit);
+    // postCategorySelect.on("change", handleCategoryChange);
+    var cars;
 
     // This function grabs posts from the database and updates the view
     // Useful if someone wants to search for a specific make
-    function getCars(make) {
-        var carMakeString = category || "";
-        if (categoryString) {
-        carMakeString = "/category/" + carMakeString;
-        }
-        $.get("/api/cars" + carMakeString, function(data) {
-        console.log("Cars", data);
-        cars = data;
+    function getCars() {
+        // var carMakeString = make || "";
+        // if (carMakeString) {
+        // carMakeString = "/make/" + carMakeString;
+        // }
+        // $.get("/api/cars" + carMakeString, function(data) {
+        // console.log("Cars", data);
+        // cars = data;
         if (!cars || !cars.length) {
             displayEmpty();
         }
@@ -135,12 +138,12 @@ $(document).ready(function() {
         var newCarDate = $("<small>");
         var newCarMake = $("<h5>");
         newCarMake.text(car.make);
-        newCarCategory.css({
-        float: "right",
-        "font-weight": "700",
-        "margin-top":
-        "-15px"
-        });
+        // newCarMake.css({
+        // float: "right",
+        // "font-weight": "700",
+        // "margin-top":
+        // "-15px"
+        // });
         var newCarPanelBody = $("<div>");
         newCarPanelBody.addClass("panel-body");
         var newCarBody = $("<p>");
