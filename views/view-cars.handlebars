@@ -19,13 +19,12 @@
 <div class="container">
     <div class="row">
         <div class="col-md-4">
-            {{!--<a class="btn btn-default" href="/blog">Go to back to website</a>--}}
             <br>
             <h2>Car Inventory</h2>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-4" id="car-col">
             <ul>
                 {{#each cars}} {{#unless this.sold}}
                 <li>
