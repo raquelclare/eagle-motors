@@ -44,7 +44,7 @@ router.post("/", function(req, res) {
   ], [
     req.body.make, req.body.model, req.body.year, req.body.color, req.body.miles, req.body.price, req.body.sold
   ], function() {
-    res.redirect("/");
+    res.redirect("/admin");
   });
 });
 
@@ -57,7 +57,7 @@ router.put("/:id", function(req, res) {
   car.updateOne({
     completed: req.body.completed
   }, condition, function() {
-    res.redirect("/");
+    res.redirect("/admin");
   });
 });
 

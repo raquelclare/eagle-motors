@@ -9,9 +9,6 @@
         <li class="nav-item active">
         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-        </li>
     </ul>
         <a class="btn btn-outline-success" href="/admin" role="button">ADMIN</a>
     </div>
@@ -39,8 +36,10 @@
             </ul>
         </div>--}}
         {{#each cars}} {{#unless this.sold}}
-        <div class="col-md-4 panel panel-default car-col">
-              <div class="car-stats">
+        <div class="col-md-4 car-col" id="{{this.id}}">
+              <div class="panel-body car-stats">
+                {{!--This img src could be stored into the database and called like <img src="{{this.photo}}"--}}
+                <img src="http://via.placeholder.com/300x200?text=car+photo+goes+here">
                 <p>Make: {{this.make}}</p>
                 <p>Model: {{this.model}} </p>
                 <p>Year: {{this.year}} </p>
@@ -48,10 +47,23 @@
                 <p>Miles: {{this.miles}} miles </p>
                 <p>Price: ${{this.price}} </p> <br>
               </div>
+              <div class="panel panel-default">
+                <div class="panel-body">
+                    Panel content
+                </div>
+              <div class="panel-footer">Panel footer</div>
+             </div>
         </div>
         {{/unless}} {{/each}}
         {{!-- An idea here would be to also add some kind of button to alert if someone has shown interest in the car --}}
     </div>
+
+      <hr>
+
+      <footer>
+        <p>&copy; B&R Eagle Motors 2017</p>
+      </footer>
 </div>
 <!-- Custom Script -->
 <script src="js/view-cars.js" type="text/javascript"></script>
+
