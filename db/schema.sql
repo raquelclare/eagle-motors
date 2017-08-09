@@ -13,5 +13,5 @@ CREATE TABLE cars
     miles INTEGER(255) not null,
     price DECIMAL(10, 2) not null,
     photo VARCHAR(1000) not null,
-    sold BOOLEAN DEFAULT false
+    sold BOOLEAN DEFAULT false not null
 );

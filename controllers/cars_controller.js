@@ -40,7 +40,7 @@ router.get("/admin", function(req, res) {
 //insert a car
 router.post("/", function(req, res) {
   car.insertOne([
-    "make", "model", "year", "color", "miles", "price", "sold"
+    "make", "model", "year", "color", "miles", "price", "photo", "sold"
   ], [
     req.body.make, req.body.model, req.body.year, req.body.color, req.body.miles, req.body.price, req.body.photo, req.body.sold
   ], function() {
