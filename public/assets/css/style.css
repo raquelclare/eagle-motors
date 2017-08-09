@@ -1,10 +1,10 @@
-/* ALL PAGES */
+/****************** ALL PAGES ******************/
 /* Move down content because we have a fixed navbar that is 50px tall */
 body {
   padding-top: 50px;
   padding-bottom: 20px;
 }
-/* INDEX */
+/****************** INDEX ******************/
 /* HEADING */
 .jumbotron {
     background: url("../images/breagle.jpg") no-repeat center center;
@@ -17,11 +17,16 @@ body {
 #logo {
     height: 32px;
 }
-/* VIEW-CARS */
+/****************** VIEW-CARS ******************/
 .car p {
     margin-bottom: 0;
 }
 /****************** ADMIN ******************/
 .admin-cars p {
     margin-bottom: 0;
+}
+
+.car-img {
+	width: 300px;
+	height: 200px;
 }

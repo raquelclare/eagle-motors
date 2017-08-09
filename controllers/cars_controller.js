@@ -42,7 +42,7 @@ router.post("/", function(req, res) {
   car.insertOne([
     "make", "model", "year", "color", "miles", "price", "sold"
   ], [
-    req.body.make, req.body.model, req.body.year, req.body.color, req.body.miles, req.body.price, req.body.sold
+    req.body.make, req.body.model, req.body.year, req.body.color, req.body.miles, req.body.price, req.body.photo, req.body.sold
   ], function() {
     res.redirect("/admin");
   });

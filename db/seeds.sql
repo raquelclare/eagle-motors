@@ -1,4 +1,4 @@
-INSERT INTO cars (make, model, year, color, miles, price) VALUES ("Toyota", "Prius", 2010, "Gold", 50000, 12000);
-INSERT INTO cars (make, model, year, color, miles, price) VALUES ("Ford", "Focus", 2016, "White", 10000, 17500);
-INSERT INTO cars (make, model, year, color, miles, price) VALUES ("Volkswagon", "GTI", 2013, "Black", 9000, 19000);
-INSERT INTO cars (make, model, year, color, miles, price) VALUES ("Tesla", "Model S", 2017, "Silver", 500, 28000);
+INSERT INTO cars (make, model, year, color, miles, price, photo) VALUES ("Toyota", "Prius", 2010, "Gold", 50000, 12000, "http://images.buysellsearch.com/image/orig/961d8367a7654de3e7b7c19b8958dda1/gold-toyota-prius-hatchback-cars-in-arizona.jpg");
+INSERT INTO cars (make, model, year, color, miles, price, photo) VALUES ("Ford", "Focus", 2016, "White", 10000, 17500, "https://i.ytimg.com/vi/8Uk1Ck-NUkM/maxresdefault.jpg");
+INSERT INTO cars (make, model, year, color, miles, price, photo) VALUES ("Volkswagon", "GTI", 2013, "Black", 9000, 19000, "https://i.pinimg.com/originals/79/fa/70/79fa7018504417ee812ce3265addd657.jpg");
+INSERT INTO cars (make, model, year, color, miles, price, photo) VALUES ("Tesla", "Model S", 2017, "Silver", 500, 28000, "https://i.ytimg.com/vi/asmDu3EysmM/maxresdefault.jpg");

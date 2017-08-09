@@ -12,5 +12,6 @@ CREATE TABLE cars
     color VARCHAR(1000) not null,
     miles INTEGER(255) not null,
     price DECIMAL(10, 2) not null,
+    photo VARCHAR(1000) not null,
     sold BOOLEAN DEFAULT false
 );

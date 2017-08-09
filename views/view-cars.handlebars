@@ -21,32 +21,18 @@
         </div>
     </div>
     <div class="row">
-        {{!--<div class="col-md-4" id="car-col">
-            <ul>
-                {{#each cars}} {{#unless this.sold}}
-                <li>
-                    {{this.year}} 
-                    {{this.color}} 
-                    {{this.make}} 
-                    {{this.model}} - 
-                    {{this.miles}} miles - 
-                    ${{this.price}}
-                </li>
-                {{/unless}} {{/each}}
-            </ul>
-        </div>--}}
         {{#each cars}} {{#unless this.sold}}
         <div class="col-md-4 car-col" id="{{this.id}}">
               <div class="panel-body car-stats">
-                {{!--This img src could be stored into the database and called like <img src="{{this.photo}}"--}}
-                <img src="http://via.placeholder.com/300x200?text=car+photo+goes+here">
+                <img class="car-img" src="{{this.photo}}">
                 <p>Make: {{this.make}}</p>
                 <p>Model: {{this.model}} </p>
                 <p>Year: {{this.year}} </p>
-                <p>Color: {{this.color}} </p>
+                <p>Exterior: {{this.color}} </p>
                 <p>Miles: {{this.miles}} miles </p>
                 <p>Price: ${{this.price}} </p> <br>
               </div>
+              {{!--Just testing panels below for editing purposes--}}
               <div class="panel panel-default">
                 <div class="panel-body">
                     Panel content
