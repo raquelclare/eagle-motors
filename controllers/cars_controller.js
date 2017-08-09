@@ -55,7 +55,7 @@ router.put("/:id", function(req, res) {
   console.log("condition", condition);
 
   car.updateOne({
-    completed: req.body.completed
+    sold: req.body.sold
   }, condition, function() {
     res.redirect("/admin");
   });

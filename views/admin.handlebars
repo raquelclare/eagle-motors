@@ -59,12 +59,12 @@
                     <p>Exterior: {{this.color}}</p>  
                     <p>Miles: {{this.miles}}</p> 
                     <p>Price: ${{this.price}}</p>
-                    <form id="update-btn" action="/{{this.id}}?_method=PUT" method="POST">
+                    <form id="update-btn" action="/{{this.id}}?_method=PUT" method="UPDATE">
                         <input type="hidden" value="true">
                         <button class="admin-btn btn btn-success" type="submit">Update</button>
                     </form>
                     {{!-- NOTE: What if instead of completely deleting the car record from the db, we have 2 different kinds of PUT requests where the first one (above) allows admin to update the car details and the second request labeled "sold" just marks the field as true which would then remove the car from the HTML bc of the handlebar condition {{#unless this.sold}}--}}
-                    <form id="sold-btn" action="/{{this.id}}?_method=PUT" method="UPDATE">
+                    <form id="sold-btn" action="/{{this.id}}?_method=PUT" method="POST">
                         <input type="hidden" name="sold" value="true">
                         <button class="admin-btn btn btn-warning" type="submit">Sold</button>
                     </form>
