@@ -26,8 +26,8 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <form id="car-input">
+        <div class="col-md-6 col-md-offset-3" id="car-input">
+            <form class="create-update-form" action="/" method="POST">
                 <div class="form-group">
                     {{!-- option to select from select list --}}
                     {{!--<div class="form-group">
@@ -39,35 +39,46 @@
                     </select>
                     </div>--}}
                     <label for="make">Make:</label>
-                    <input type="text "class="form-control" id="make">
+                    <input type="text" name="make" class="form-control" id="make" required>
                     <label for="model">Model:</label>
-                    <input type="text "class="form-control" id="model">
+                    <input type="text" name="model" class="form-control" id="model" required>
                     <label for="year">Year:</label>
-                    <input type="text" class="form-control" id="year">
+                    <input type="number" min="1990" max="2030" name="year" class="form-control" id="year" required>
                     <label for="color">Color:</label>
-                    <input type="text" class="form-control" id="color">
+                    <input type="text" name="color" class="form-control" id="color" required>
                     <label for="miles">Miles:</label>
-                    <input type="text" class="form-control" id="miles">
+                    <input type="number" min="1" max="4000000" name="miles" class="form-control" id="miles" required>
                     <label for="price">Price:</label>
-                    <input type="text" class="form-control" id="price">
+                    <input type="number" name="price" min="1" max="50000" class="form-control" id="price" required>
                     <br />
                     <button type="submit" class="btn btn-success submit">Submit</button>
                 </div>
             </form>
         </div>
         <div class="col-md-6 car-container">
-            <ul>
+            <div class="row">
+                <div class="admin-cars">
                 {{#each cars}} {{#unless this.sold}}
-                <li>
+                    <p>
                     {{this.year}} 
                     {{this.color}} 
                     {{this.make}} 
                     {{this.model}} - 
                     {{this.miles}} miles - 
                     ${{this.price}}
-                </li>
+                    </p>
+                    <form class="admin-btn" id="update-btn" action="/{{this.id}}?_method=PUT" method="POST">
+                    <input type="hidden" value="true">
+                    <button type="submit">Update</button>
+                    </form>
+                    <form class="admin-btn" id="delete-btn" action="/{{this.id}}?_method=PUT" method="POST">
+                    <input type="hidden" name="sold" value="true">
+                    </form>
+                    <br>
+                    {{> cars/delete-car}}
                 {{/unless}} {{/each}}
-            </ul>
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -2,12 +2,12 @@
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" href="#"><img src="./assets/images/eagle-motors-logo.png" id="logo"></a>
+    <a class="navbar-brand" href="/"><img src="./assets/images/eagle-motors-logo.png" id="logo"></a>
 
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
         <a class="nav-link" href="#">Link</a>
@@ -24,7 +24,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-4" id="car-col">
+        {{!--<div class="col-md-4" id="car-col">
             <ul>
                 {{#each cars}} {{#unless this.sold}}
                 <li>
@@ -37,25 +37,21 @@
                 </li>
                 {{/unless}} {{/each}}
             </ul>
+        </div>--}}
+        {{#each cars}} {{#unless this.sold}}
+        <div class="col-md-4 panel panel-default car-col">
+              <div class="car-stats">
+                <p>Make: {{this.make}}</p>
+                <p>Model: {{this.model}} </p>
+                <p>Year: {{this.year}} </p>
+                <p>Color: {{this.color}} </p>
+                <p>Miles: {{this.miles}} miles </p>
+                <p>Price: ${{this.price}} </p> <br>
+              </div>
         </div>
+        {{/unless}} {{/each}}
+        {{!-- An idea here would be to also add some kind of button to alert if someone has shown interest in the car --}}
     </div>
-    {{!--<div class="row">
-        <div class="col-md-4" id="car-col">
-            <h2>Car Inventory</h2>
-            <ul>
-                {{#each cars}} {{#unless this.sold}}
-                <li>
-                    {{this.year}} 
-                    {{this.color}} 
-                    {{this.make}} 
-                    {{this.model}} - 
-                    {{this.miles}} miles - 
-                    ${{this.price}}
-                </li>
-                {{/unless}} {{/each}}
-            </ul>
-        </div>
-    </div>--}}
 </div>
 <!-- Custom Script -->
 <script src="js/view-cars.js" type="text/javascript"></script>
