@@ -15,3 +15,6 @@ CREATE TABLE cars
     photo VARCHAR(1000) not null,
     sold BOOLEAN DEFAULT false not null
 );
+
+CREATE DATABASE car_admin;
+USE car_admin;
