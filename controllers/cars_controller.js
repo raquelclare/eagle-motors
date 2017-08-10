@@ -63,6 +63,18 @@ router.get("/login", function(req, res) {
   res.render("login.handlebars");
 });
 
+//new user registration
+router.post("/register", function(req, res, next) {
+    car.selectAll(function(data) {
+    var hbsObject = {
+      cars: data
+    };
+    //console.log("object: ", hbsObject);
+    res.render("admin.handlebars", hbsObject);
+    console.log("New admin added");
+  });
+});
+
 //post request for login information
 router.post("/login",
   passport.authenticate("local"),

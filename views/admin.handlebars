@@ -1,15 +1,14 @@
 <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon"></span>
     </button>
     <a class="navbar-brand" href="/"><img src="./assets/images/eagle-motors-logo.png" id="logo"></a>
-
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-    <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-        </li>
-    </ul>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
         <a class="btn btn-outline-success" href="/admin" role="button">ADMIN</a>
     </div>
 </nav>
@@ -20,14 +19,14 @@
             <h2>Add a car</h2>
             <form class="create-update-form" action="/" method="POST">
                 <div class="form-group panel-body">
-                    {{!-- option to select from select list --}}
-                    {{!--<div class="form-group">
+                    {{!-- option to select from select list --}} {{!--
+                    <div class="form-group">
                         <label for="category">Make:</label>
                         <select class="form-control" id="category">
-                        <option value="audi">Audi</option>
-                        <option value="bmw">BMW</option>
-                        <option value="toyota">Toyota</option>
-                    </select>
+                            <option value="audi">Audi</option>
+                            <option value="bmw">BMW</option>
+                            <option value="toyota">Toyota</option>
+                        </select>
                     </div>--}}
                     <label for="make">Make:</label>
                     <input type="text" name="make" class="form-control" id="make" required>
@@ -47,52 +46,71 @@
                     <button type="submit" class="btn btn-primary submit">Submit</button>
                 </div>
             </form>
+            <br>
+
+            <h4>Create a new admin:</h4>
+            <form method="POST" action="/register">
+                    <!--    <div class="form-group">
+                  <label for="email">Email address</label>
+                  <input type="email" class="form-control" id="email" placeholder="email">
+                </div> -->
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" name="username" class="form-control" id="username" placeholder="username">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" class="form-control" id="password" placeholder="password">
+                </div>
+                <div class="form-group">
+                    <label for="passwordMatch">Re-enter password</label>
+                    <input type="password" name="passwordMatch" class="form-control" id="passwordMatch" placeholder="password">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
         </div>
         <div class="col-md-6 car-container panel panel-default">
-            <h2>Listed cars</h2>
-                {{#each cars}} {{#unless this.sold}}
-                <div class="admin-cars panel-body" id="{{this.id}}">
-                    <img class="car-img" src="{{this.photo}}">
-                    <p>Make: {{this.make}}</p>
-                    <p>Model: {{this.model}}</p>
-                    <p>Year: {{this.year}}</p>
-                    <p>Exterior: {{this.color}}</p>  
-                    <p>Miles: {{this.miles}}</p> 
-                    <p>Price: ${{this.price}}</p>
-                    <form id="update-btn" action="/{{this.id}}?_method=PUT" method="UPDATE">
-                        <input type="hidden" value="true">
-                        <button class="admin-btn btn btn-success" type="submit">Update</button>
-                    </form>
-                    {{!-- NOTE: What if instead of completely deleting the car record from the db, we have 2 different kinds of PUT requests where the first one (above) allows admin to update the car details and the second request labeled "sold" just marks the field as true which would then remove the car from the HTML bc of the handlebar condition {{#unless this.sold}}--}}
-                    <form id="sold-btn" action="/{{this.id}}?_method=PUT" method="POST">
-                        <input type="hidden" name="sold" value="true">
-                        <button class="admin-btn btn btn-warning" type="submit">Sold</button>
-                    </form>
-                    {{!--<form id="delete-btn" action="/{{this.id}}?_method=PUT" method="POST">
-                        <input type="hidden" name="sold" value="true">
-                    </form>--}}
-                    {{> cars/delete-car}}
-                    <br>
-                
-                </div>
-                {{/unless}} {{/each}}
+            <h2>Listed cars</h2> {{#each cars}} {{#unless this.sold}}
+            <div class="admin-cars panel-body" id="{{this.id}}">
+                <img class="car-img" src="{{this.photo}}">
+                <p>Make: {{this.make}}</p>
+                <p>Model: {{this.model}}</p>
+                <p>Year: {{this.year}}</p>
+                <p>Exterior: {{this.color}}</p>
+                <p>Miles: {{this.miles}}</p>
+                <p>Price: ${{this.price}}</p>
+                <form id="update-btn" action="/{{this.id}}?_method=PUT" method="UPDATE">
+                    <input type="hidden" value="true">
+                    <button class="admin-btn btn btn-success" type="submit">Update</button>
+                </form>
+                {{!-- NOTE: What if instead of completely deleting the car record from the db, we have 2 different kinds of PUT requests where the first one (above) allows admin to update the car details and the second request labeled "sold" just marks the field as true which would then remove the car from the HTML bc of the handlebar condition {{#unless this.sold}}--}}
+                <form id="sold-btn" action="/{{this.id}}?_method=PUT" method="POST">
+                    <input type="hidden" name="sold" value="true">
+                    <button class="admin-btn btn btn-warning" type="submit">Sold</button>
+                </form>
+                {{!--
+                <form id="delete-btn" action="/{{this.id}}?_method=PUT" method="POST">
+                    <input type="hidden" name="sold" value="true">
+                </form>--}} {{> cars/delete-car}}
+                <br>
+            </div>
+            {{/unless}} {{/each}}
         </div>
     </div>
-
-      <hr>
-
-      <footer>
+    <hr>
+    <footer>
         <p>&copy; B&R Eagle Motors 2017</p>
-      </footer>
+    </footer>
 </div>
 <!-- Custom Script -->
-{{!--<script src="js/admin.js" type="text/javascript"></script>--}}
+{{!--
+<script src="js/admin.js" type="text/javascript"></script>--}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.0/moment.min.js" type="text/javascript"></script>
 {{!--
 <ul>
     {{#each cars}}
-        <li>
-            {{car}}
-        </li>
+    <li>
+        {{car}}
+    </li>
     {{/each}}
 </ul>--}}
