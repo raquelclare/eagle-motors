@@ -21,6 +21,16 @@ passport.initialize();
 //     });
 //   }
 // ));
+passport.use(new LocalStrategy ({
+  usernameField: "email",
+  passwordField: "passwd",
+  // session: false
+},
+  function(username, password, done) {
+    // return done(usernameField)
+    console.log("wooooo");
+  }
+));
 
 var router = express.Router();
 
@@ -54,8 +64,8 @@ router.get("/login", function(req, res) {
 });
 
 //post request for login information
-router.post('/login',
-  passport.authenticate('local'),
+router.post("/login",
+  passport.authenticate("local"),
   function(req, res) {
     console.log("req: ", req.body);
   }
