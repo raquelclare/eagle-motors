@@ -17,6 +17,7 @@ router.get("/", function(req, res) {
   });
 });
 
+//view car inventory page
 router.get("/view-cars", function(req, res) {
   car.selectAll(function(data) {
     var hbsObject = {
@@ -27,6 +28,7 @@ router.get("/view-cars", function(req, res) {
   });
 });
 
+//admin site
 router.get("/admin", function(req, res) {
   car.selectAll(function(data) {
     var hbsObject = {
