@@ -1,6 +1,26 @@
 //requre express and the cars model
 var express = require("express");
 var car = require("../models/car.js");
+var passport = require("passport"), LocalStrategy = require("passport-local").Strategy;
+
+//initialize passport
+passport.initialize();
+
+//set up passport strategy
+// passport.use(new LocalStrategy(
+//   function(username, password, done) {
+//     User.findOne({ username: username }, function (err, user) {
+//       if (err) { return done(err); }
+//       if (!user) {
+//         return done(null, false, { message: 'Incorrect username.' });
+//       }
+//       if (!user.validPassword(password)) {
+//         return done(null, false, { message: 'Incorrect password.' });
+//       }
+//       return done(null, user);
+//     });
+//   }
+// ));
 
 var router = express.Router();
 
@@ -12,7 +32,7 @@ router.get("/", function(req, res) {
     var hbsObject = {
       cars: data
     };
-    console.log("object: ", hbsObject);
+    //console.log("object: ", hbsObject);
     res.render("index", hbsObject);
   });
 });
@@ -23,20 +43,24 @@ router.get("/view-cars", function(req, res) {
     var hbsObject = {
       cars: data
     };
-    console.log("object: ", hbsObject);
+    //console.log("object: ", hbsObject);
     res.render("view-cars.handlebars", hbsObject);
   });
 });
 
+//login page
 router.get("/login", function(req, res) {
-  car.selectAll(function(data) {
-    var hbsObject = {
-      cars: data
-    };
-    console.log("object: ", hbsObject);
-    res.render("login.handlebars", hbsObject);
-  });
+  res.render("login.handlebars");
 });
+
+//post request for login information
+router.post('/login',
+  passport.authenticate('local'),
+  function(req, res) {
+    console.log("req: ", req.body);
+  }
+);
+// failureFlash: true
 
 //admin site
 router.get("/admin", function(req, res) {
@@ -44,7 +68,7 @@ router.get("/admin", function(req, res) {
     var hbsObject = {
       cars: data
     };
-    console.log("object: ", hbsObject);
+    //console.log("object: ", hbsObject);
     res.render("admin.handlebars", hbsObject);
   });
 });

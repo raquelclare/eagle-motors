@@ -1,7 +1,6 @@
 var express = require("express");
 var methodOverride = require("method-override");
 var bodyParser = require("body-parser");
-var passport = require("passport"), LocalStrategy = require("passport-local").Strategy;
 
 //set port
 var port = process.env.PORT || 3000;
@@ -27,25 +26,6 @@ app.set("view engine", "handlebars");
 var routes = require("./controllers/cars_controller.js");
 
 app.use("/", routes);
-
-//initializin passport
-passport.initialize();
-
-//set up passport strategy
-passport.use(new LocalStrategy(
-  function(username, password, done) {
-    User.findOne({ username: username }, function (err, user) {
-      if (err) { return done(err); }
-      if (!user) {
-        return done(null, false, { message: 'Incorrect username.' });
-      }
-      if (!user.validPassword(password)) {
-        return done(null, false, { message: 'Incorrect password.' });
-      }
-      return done(null, user);
-    });
-  }
-));
 
 app.listen(port, function() {
   console.log("App listening on port " + port);
