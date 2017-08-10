@@ -49,5 +49,5 @@ passport.use(new LocalStrategy(
 
 app.listen(port, function() {
   console.log("App listening on port " + port);
-  console.log("Passport: ", passport);
+  //console.log("Passport: ", passport);
 });

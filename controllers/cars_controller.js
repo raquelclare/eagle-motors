@@ -28,6 +28,16 @@ router.get("/view-cars", function(req, res) {
   });
 });
 
+router.get("/login", function(req, res) {
+  car.selectAll(function(data) {
+    var hbsObject = {
+      cars: data
+    };
+    console.log("object: ", hbsObject);
+    res.render("login.handlebars", hbsObject);
+  });
+});
+
 //admin site
 router.get("/admin", function(req, res) {
   car.selectAll(function(data) {
