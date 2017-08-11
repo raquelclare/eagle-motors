@@ -3,35 +3,6 @@ var express = require("express");
 var car = require("../models/car.js");
 var passport = require("passport"), LocalStrategy = require("passport-local").Strategy;
 
-//initialize passport
-passport.initialize();
-
-//set up passport strategy
-// passport.use(new LocalStrategy(
-//   function(username, password, done) {
-//     User.findOne({ username: username }, function (err, user) {
-//       if (err) { return done(err); }
-//       if (!user) {
-//         return done(null, false, { message: 'Incorrect username.' });
-//       }
-//       if (!user.validPassword(password)) {
-//         return done(null, false, { message: 'Incorrect password.' });
-//       }
-//       return done(null, user);
-//     });
-//   }
-// ));
-passport.use(new LocalStrategy ({
-  usernameField: "email",
-  passwordField: "passwd",
-  // session: false
-},
-  function(username, password, done) {
-    // return done(usernameField)
-    console.log("wooooo");
-  }
-));
-
 var router = express.Router();
 
 // Create all routes and set up logic within those routes where required
@@ -71,21 +42,16 @@ router.get("/new-admin", function(req, res) {
 //new admin registration
 router.post("/new-admin", function(req, res, next) {
   // console.log("req body: ", req.body);
-  // req.body.username
-  // req.body.password
+  var username = req.body.username;
+  var password = req.body.password;
   var db = require("../config/connection.js");
   
-  res.render("new-admin.handlebars", { title: "New Admin Added" });
-});
+  db.query("INSERT INTO admins (username, password) VALUES (?, ?)", [username, password], function(error, results, fields) {
+    if (error) throw error;
 
-//post request for login information
-router.post("/login",
-  passport.authenticate("local"),
-  function(req, res) {
-    console.log("req: ", req.body);
-  }
-);
-// failureFlash: true
+    res.render("new-admin.handlebars", { title: "New Admin Added" });
+  });
+});
 
 //admin site
 router.get("/admin", function(req, res) {

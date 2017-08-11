@@ -18,3 +18,10 @@ CREATE TABLE cars
 
 CREATE DATABASE car_admin;
 USE car_admin;
+
+CREATE TABLE admins 
+(
+	id INTEGER AUTO_INCREMENT PRIMARY KEY NOT NULL,
+	username VARCHAR(15) not null,
+	password BINARY(60) not null
+);
