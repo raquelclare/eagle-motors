@@ -7,9 +7,9 @@ var cookieParser = require("cookie-parser");
 //require env package to utilize .env file
 require("dotenv").config();
 
-//authentication
+//authentication packages
 var session = require("express-session");
-
+var passport = require("passport");
 
 //set port
 var port = process.env.PORT || 3000;
@@ -26,7 +26,9 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   //cookie: { secure: true }
-})) //the app.use session must be directly after cookieParser 
+}))  
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 app.use(bodyParser.urlencoded({ extended: false }));

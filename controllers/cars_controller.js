@@ -1,7 +1,7 @@
 //requre express and the cars model
 var express = require("express");
 var car = require("../models/car.js");
-var passport = require("passport"), LocalStrategy = require("passport-local").Strategy;
+var passport = require("passport");
 var expressValidator = require("express-validator");
 
 //bcrypt package to hash passwords
@@ -80,7 +80,15 @@ router.post("/new-admin", function(req, res, next) {
         db.query("INSERT INTO admins (username, password) VALUES (?, ?)", [username, password], function(error, results, fields) {
           if (error) throw error;
 
-          res.render("new-admin.handlebars", { title: "New Admin Added" });
+          db.query("SELECT LAST_INSERT_ID() as user_id", function(error, results, fields) {
+            if (error) throw error;
+
+            const user_id = results[0];
+
+            req.login(user_id, function(err) {
+              res.redirect("/admin");
+            }); 
+          });
         });
       });
     }
@@ -128,6 +136,15 @@ router.delete("/:id", function(req, res) {
   car.delete(condition, function() {
     res.redirect("/admin");
   });
+});
+
+//passport session
+passport.serializeUser(function(user_id, done) {
+  done(null, user_id);
+});
+
+passport.deserializeUser(function(user_id, done) {
+    done(null, user_id);
 });
 
 // Export routes for server.js to use.
