@@ -5,9 +5,11 @@
 
 			{{#if userErrors}}
 				{{#each userErrors}}
-					{{this.username.msg}}
-					{{this.password.msg}}
-					{{this.passwordMatch.msg}}
+					<div class="alert alert-danger">
+						{{this.username.msg}}<br>
+						{{this.password.msg}}<br>
+						{{this.passwordMatch.msg}}
+					</div>
 				{{/each}}
 			{{/if}}
 

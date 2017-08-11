@@ -46,9 +46,8 @@ router.post("/new-admin", function(req, res, next) {
 
   //form validation from express validator
   req.checkBody("username", "Username field cannot be empty").notEmpty();
-  req.checkBody('username', 'Username field cannot be empty.').notEmpty();
-  req.checkBody('username', 'Username must be between 4-15 characters long.').len(4, 15);
-  req.checkBody('password', 'Password must be between 8-100 characters long.').len(8, 100);
+  req.checkBody("username", "Username must be between 4-15 characters long.").len(4, 15);
+  req.checkBody("password", "Password must be between 8-100 characters long.").len(8, 100);
   req.checkBody("password", "Password must include one lowercase character, one uppercase character, a number, and a special character.").matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.* )(?=.*[^a-zA-Z0-9]).{8,}$/, "i");
   req.checkBody('passwordMatch', 'Password must be between 8-100 characters long.').len(8, 100);
   req.checkBody('passwordMatch', 'Passwords do not match, please try again.').equals(req.body.password);
@@ -65,19 +64,19 @@ router.post("/new-admin", function(req, res, next) {
         title: "Admin Registration Error",
         userErrors: userErrors
       });
-      console.log(userErrors[0].password.msg);
+      //console.log(userErrors[0].password.msg);
+    } else {
+      var username = req.body.username;
+      var password = req.body.password;
+
+      var db = require("../config/connection.js");
+      
+      db.query("INSERT INTO admins (username, password) VALUES (?, ?)", [username, password], function(error, results, fields) {
+        if (error) throw error;
+
+        res.render("new-admin.handlebars", { title: "New Admin Added" });
+      });
     }
-  });
-
-  var username = req.body.username;
-  var password = req.body.password;
-
-  var db = require("../config/connection.js");
-  
-  db.query("INSERT INTO admins (username, password) VALUES (?, ?)", [username, password], function(error, results, fields) {
-    if (error) throw error;
-
-    //res.render("new-admin.handlebars", { title: "New Admin Added" });
   });
 });
 
