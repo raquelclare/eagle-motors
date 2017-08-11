@@ -10,6 +10,7 @@ require("dotenv").config();
 //authentication packages
 var session = require("express-session");
 var passport = require("passport");
+var MySQLStore = require('express-mysql-session')(session);
 
 //set port
 var port = process.env.PORT || 3000;
@@ -21,8 +22,18 @@ app.use(cookieParser());
 // Serve static content for the app from the "public" directory in the application directory
 app.use(express.static("public"));
 
+var options = {
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME
+};
+
+var sessionStore = new MySQLStore(options);
+
 app.use(session({
   secret: 'enicmoeinciamowenive',
+  store: sessionStore,
   resave: false,
   saveUninitialized: false,
   //cookie: { secure: true }

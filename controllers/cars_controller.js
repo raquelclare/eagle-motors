@@ -96,7 +96,7 @@ router.post("/new-admin", function(req, res, next) {
 });
 
 //admin site
-router.get("/admin", function(req, res) {
+router.get("/admin", authenticationMiddleware(), function(req, res) {
   car.selectAll(function(data) {
     var hbsObject = {
       cars: data
@@ -146,6 +146,15 @@ passport.serializeUser(function(user_id, done) {
 passport.deserializeUser(function(user_id, done) {
     done(null, user_id);
 });
+
+function authenticationMiddleware() {  
+  return (req, res, next) => {
+    console.log(`req.session.passport.user: ${JSON.stringify(req.session.passport)}`);
+
+      if (req.isAuthenticated()) return next();
+      res.redirect("/login")
+  }
+}
 
 // Export routes for server.js to use.
 module.exports = router;
