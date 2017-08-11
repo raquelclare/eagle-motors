@@ -10,6 +10,7 @@ require("dotenv").config();
 //authentication packages
 var session = require("express-session");
 var passport = require("passport");
+var LocalStrategy = require('passport-local').Strategy;
 var MySQLStore = require('express-mysql-session')(session);
 
 //set port
@@ -59,6 +60,23 @@ app.set("view engine", "handlebars");
 var routes = require("./controllers/cars_controller.js");
 
 app.use("/", routes);
+
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+  	console.log(username);
+  	console.log(password);
+  	const db = require("./config/connection.js");
+
+  	db.query("SELECT password FROM admins WHERE username = ?", [username], function(err, results, fields) {
+  		if(err) {done(err)};
+
+  		if(results.length === 0) {
+  			done(null, false);
+  		}
+  		return done(null, "s;lkeaf");
+  	});
+  }
+)); 
 
 app.listen(port, function() {
   console.log("App listening on port " + port);

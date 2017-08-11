@@ -40,6 +40,12 @@ router.get("/login", function(req, res) {
   res.render("login.handlebars");
 });
 
+//login page
+router.post("/login", passport.authenticate("local", {
+  successRedirect: "/admin",
+  failureRedirect: "/login"
+}));
+
 //new admin registration page
 router.get("/new-admin", function(req, res) {
   res.render("new-admin.handlebars", { title: "Add New Admin" });
