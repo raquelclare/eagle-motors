@@ -48,26 +48,8 @@
             </form>
             <br>
 
-            <h4>Create a new admin:</h4>
-            <form method="POST" action="/register">
-                    <!--    <div class="form-group">
-                  <label for="email">Email address</label>
-                  <input type="email" class="form-control" id="email" placeholder="email">
-                </div> -->
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" name="username" class="form-control" id="username" placeholder="username">
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" name="password" class="form-control" id="password" placeholder="password">
-                </div>
-                <div class="form-group">
-                    <label for="passwordMatch">Re-enter password</label>
-                    <input type="password" name="passwordMatch" class="form-control" id="passwordMatch" placeholder="password">
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+            <p><a class="btn btn-primary btn-md" href="/new-admin" role="button">Add an admin</a></p>
+
         </div>
         <div class="col-md-6 car-container panel panel-default">
             <h2>Listed cars</h2> {{#each cars}} {{#unless this.sold}}

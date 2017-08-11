@@ -63,16 +63,14 @@ router.get("/login", function(req, res) {
   res.render("login.handlebars");
 });
 
-//new user registration
-router.post("/register", function(req, res, next) {
-    car.selectAll(function(data) {
-    var hbsObject = {
-      cars: data
-    };
-    //console.log("object: ", hbsObject);
-    res.render("admin.handlebars", hbsObject);
-    console.log("New admin added");
-  });
+//new admin registration page
+router.get("/new-admin", function(req, res) {
+  res.render("new-admin.handlebars", { title: "Add New Admin" });
+});
+
+//new admin registration
+router.post("/new-admin", function(req, res, next) {
+    res.render("new-admin.handlebars", { title: "New Admin Added" });
 });
 
 //post request for login information
