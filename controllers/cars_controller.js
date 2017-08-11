@@ -70,7 +70,12 @@ router.get("/new-admin", function(req, res) {
 
 //new admin registration
 router.post("/new-admin", function(req, res, next) {
-    res.render("new-admin.handlebars", { title: "New Admin Added" });
+  // console.log("req body: ", req.body);
+  // req.body.username
+  // req.body.password
+  var db = require("../config/connection.js");
+  
+  res.render("new-admin.handlebars", { title: "New Admin Added" });
 });
 
 //post request for login information

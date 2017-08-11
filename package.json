@@ -20,6 +20,7 @@
   "homepage": "https://github.com/raquelclare/eagle-motors#readme",
   "dependencies": {
     "body-parser": "^1.17.2",
+    "dotenv": "^4.0.0",
     "express": "^4.15.4",
     "express-handlebars": "^3.0.0",
     "method-override": "^2.3.9",

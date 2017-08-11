@@ -2,6 +2,9 @@ var express = require("express");
 var methodOverride = require("method-override");
 var bodyParser = require("body-parser");
 
+//require env package to utilize .env file
+require("dotenv").config();
+
 //set port
 var port = process.env.PORT || 3000;
 
