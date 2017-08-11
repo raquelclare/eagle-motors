@@ -10,8 +10,9 @@ require("dotenv").config();
 //authentication packages
 var session = require("express-session");
 var passport = require("passport");
-var LocalStrategy = require('passport-local').Strategy;
-var MySQLStore = require('express-mysql-session')(session);
+var LocalStrategy = require("passport-local").Strategy;
+var MySQLStore = require("express-mysql-session")(session);
+var bcrypt = require("bcrypt");
 
 //set port
 var port = process.env.PORT || 3000;
@@ -73,7 +74,16 @@ passport.use(new LocalStrategy(
   		if(results.length === 0) {
   			done(null, false);
   		}
-  		return done(null, "s;lkeaf");
+
+  		const hash = results[0].password.toString();
+
+  		bcrypt.compare(password, hash, function(err, response) {
+  			if (response === true) {
+  				return done(null, {user_id: 43});
+  			} else {
+  				return done(null, false)
+  			}
+  		}); 
   	});
   }
 )); 
