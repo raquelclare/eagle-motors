@@ -64,7 +64,7 @@ router.post("/new-admin", function(req, res, next) {
         title: "Admin Registration Error",
         userErrors: userErrors
       });
-      //console.log(userErrors[0].password.msg);
+      return;
     } else {
       var username = req.body.username;
       var password = req.body.password;
