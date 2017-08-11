@@ -25,3 +25,7 @@ CREATE TABLE admins
 	username VARCHAR(15) not null,
 	password BINARY(60) not null
 );
+
+-- run this code after creating table to make username unique
+ALTER TABLE `cars_db`.`admins` 
+ADD UNIQUE INDEX `username_UNIQUE` (`username` ASC);

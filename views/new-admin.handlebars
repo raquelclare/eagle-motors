@@ -2,6 +2,15 @@
 	<div class="row">
 		<div class="col-med-12">
 			<h1>{{ title }}</h1>
+
+			{{#if userErrors}}
+				{{#each userErrors}}
+					{{this.username.msg}}
+					{{this.password.msg}}
+					{{this.passwordMatch.msg}}
+				{{/each}}
+			{{/if}}
+
 			<form method="POST" action="/new-admin">
                     <!--    <div class="form-group">
                   <label for="email">Email address</label>

@@ -1,6 +1,7 @@
 var express = require("express");
 var methodOverride = require("method-override");
 var bodyParser = require("body-parser");
+var expressValidator = require("express-validator");
 
 //require env package to utilize .env file
 require("dotenv").config();
@@ -15,6 +16,8 @@ var app = express();
 app.use(express.static("public"));
 
 app.use(bodyParser.urlencoded({ extended: false }));
+//express validator, which must be right below body parser middleware
+app.use(expressValidator());
 
 // Override with POST having ?_method=DELETE
 app.use(methodOverride("_method"));
