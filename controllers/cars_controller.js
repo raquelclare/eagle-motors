@@ -4,6 +4,10 @@ var car = require("../models/car.js");
 var passport = require("passport"), LocalStrategy = require("passport-local").Strategy;
 var expressValidator = require("express-validator");
 
+//bcrypt package to hash passwords
+var bcrypt = require('bcrypt');
+var saltRounds = 10;
+
 
 var router = express.Router();
 
@@ -70,11 +74,14 @@ router.post("/new-admin", function(req, res, next) {
       var password = req.body.password;
 
       var db = require("../config/connection.js");
-      
-      db.query("INSERT INTO admins (username, password) VALUES (?, ?)", [username, password], function(error, results, fields) {
-        if (error) throw error;
 
-        res.render("new-admin.handlebars", { title: "New Admin Added" });
+      //wrapping query funciton inside bcrypt function to hash and salt passwords as they're entered
+      bcrypt.hash(password, saltRounds, function(err, hash) {
+        db.query("INSERT INTO admins (username, password) VALUES (?, ?)", [username, password], function(error, results, fields) {
+          if (error) throw error;
+
+          res.render("new-admin.handlebars", { title: "New Admin Added" });
+        });
       });
     }
   });
