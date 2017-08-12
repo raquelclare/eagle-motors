@@ -61,7 +61,7 @@ router.post("/login", passport.authenticate("local", {
 }));
 
 //new admin registration page
-router.get("/new-admin", authenticationMiddleware(), function(req, res) {
+router.get("/new-admin", function(req, res) {
   res.render("new-admin.handlebars", { title: "Add New Admin" });
 });
 
