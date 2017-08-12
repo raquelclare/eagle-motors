@@ -1,27 +1,27 @@
 // Set up MySQL connection.
 var mysql = require("mysql");
-
+var connection;
 //connect to either JawsDB or MySQL local database
-// if (process.env.JAWSDB_URL) {
-//   connection = mysql.createConnection(process.env.JAWSDB_URL);
-// } else {
-//   connection = mysql.createConnection({
-//     host: "localhost",
-//     port: 3306,
-//     user: "root",
-//     password: "root",
-//     database: "cars_db"
-//   });
-// }
+if (process.env.JAWSDB_URL) {
+  connection = mysql.createConnection(process.env.JAWSDB_URL);
+} else {
+  connection = mysql.createConnection({
+    host: "localhost",
+    port: 8889,
+    user: "root",
+    password: "root",
+    database: "cars_db"
+  });
+}
 
-var connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  port: 8889,
-  password: "root",
-  database: "cars_db"
-  // socketPath: "/Applications/MAMP/tmp/mysql/mysql.sock"
-});
+// var connection = mysql.createConnection({
+//   host: "localhost",
+//   user: "root",
+//   port: 8889,
+//   password: "root",
+//   database: "cars_db"
+//   // socketPath: "/Applications/MAMP/tmp/mysql/mysql.sock"
+// });
 
 // Make connection.
 connection.connect(function(err) {
