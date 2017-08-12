@@ -6,22 +6,20 @@ if (process.env.JAWSDB_URL) {
   connection = mysql.createConnection(process.env.JAWSDB_URL);
 } else {
   connection = mysql.createConnection({
-    host: "localhost",
-    port: 8889,
-    user: "root",
-    password: "root",
-    database: "cars_db"
-  });
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME
+});
 }
 
-// var connection = mysql.createConnection({
-//   host: "localhost",
-//   user: "root",
-//   port: 8889,
-//   password: "root",
-//   database: "cars_db"
-//   // socketPath: "/Applications/MAMP/tmp/mysql/mysql.sock"
-// });
+// connection = mysql.createConnection({
+//     host: "localhost",
+//     port: 8889,
+//     user: "root",
+//     password: "root",
+//     database: "cars_db"
+//   });
 
 // Make connection.
 connection.connect(function(err) {
