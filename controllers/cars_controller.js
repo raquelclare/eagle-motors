@@ -8,7 +8,6 @@ var expressValidator = require("express-validator");
 var bcrypt = require('bcrypt');
 var saltRounds = 10;
 
-
 var router = express.Router();
 
 // Create all routes and set up logic within those routes where required
