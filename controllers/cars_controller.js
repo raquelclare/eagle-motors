@@ -34,6 +34,21 @@ router.get("/view-cars", function(req, res) {
   });
 });
 
+//services page
+router.get("/services", function(req, res) {
+  res.render("services.handlebars");
+});
+
+//about page
+router.get("/about", function(req, res) {
+  res.render("about.handlebars");
+});
+
+//contact page
+router.get("/contact", function(req, res) {
+  res.render("contact.handlebars");
+});
+
 //login page
 router.get("/login", function(req, res) {
   res.render("login.handlebars");
@@ -82,7 +97,7 @@ router.post("/new-admin", function(req, res, next) {
 
       //wrapping query funciton inside bcrypt function to hash and salt passwords as they're entered
       bcrypt.hash(password, saltRounds, function(err, hash) {
-        db.query("INSERT INTO admins (username, password) VALUES (?, ?)", [username, password], function(error, results, fields) {
+        db.query("INSERT INTO admins (username, password) VALUES (?, ?)", [username, hash], function(error, results, fields) {
           if (error) throw error;
 
           db.query("SELECT LAST_INSERT_ID() as user_id", function(error, results, fields) {

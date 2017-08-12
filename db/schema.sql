@@ -16,9 +16,6 @@ CREATE TABLE cars
     sold BOOLEAN DEFAULT false not null
 );
 
-CREATE DATABASE car_admin;
-USE car_admin;
-
 CREATE TABLE admins 
 (
 	id INTEGER AUTO_INCREMENT PRIMARY KEY NOT NULL,

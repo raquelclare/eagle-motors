@@ -15,10 +15,12 @@ var mysql = require("mysql");
 // }
 
 var connection = mysql.createConnection({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME
+  host: "localhost",
+  user: "root",
+  port: 8889,
+  password: "root",
+  database: "cars_db"
+  // socketPath: "/Applications/MAMP/tmp/mysql/mysql.sock"
 });
 
 // Make connection.
@@ -38,3 +40,4 @@ connection.query('SELECT 1 + 1 AS solution', function (error, results, fields) {
 
 // Export connection for our ORM to use.
 module.exports = connection;
+// console.log(connection);

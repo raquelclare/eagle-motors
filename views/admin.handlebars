@@ -1,22 +1,9 @@
-<nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <a class="navbar-brand" href="/"><img src="./assets/images/eagle-motors-logo.png" id="logo"></a>
-    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-            </li>
-        </ul>
-        <a class="btn btn-outline-success" href="/login" role="button">ADMIN</a>
-    </div>
-</nav>
+{{> cars/nav-bar}}
 <div class="container">
     <br>
     <div class="row">
         <div class="col-md-6" id="car-input">
-            <h2>Add a car</h2>
+            <h2>Post a car</h2>
             <form class="create-update-form" action="/" method="POST">
                 <div class="form-group panel-body">
                     {{!-- option to select from select list --}} {{!--
@@ -46,21 +33,23 @@
                     <button type="submit" class="btn btn-primary submit">Submit</button>
                 </div>
             </form>
-            <br>
 
             <p><a class="btn btn-primary btn-md" href="/new-admin" role="button">Add an admin</a></p>
 
         </div>
         <div class="col-md-6 car-container panel panel-default">
             <h2>Listed cars</h2> {{#each cars}} {{#unless this.sold}}
-            <div class="admin-cars panel-body" id="{{this.id}}">
-                <img class="car-img" src="{{this.photo}}">
-                <p>Make: {{this.make}}</p>
-                <p>Model: {{this.model}}</p>
-                <p>Year: {{this.year}}</p>
-                <p>Exterior: {{this.color}}</p>
-                <p>Miles: {{this.miles}}</p>
-                <p>Price: ${{this.price}}</p>
+            <div class="card" style="width: 20rem;" id="{{this.id}}">
+                <img class="card-img-top" src="{{this.photo}}">
+                <div class="card-block">
+                <h4 class="card-title">{{this.make}} {{this.model}}</h4>
+                
+                <p class="card-text">Year: {{this.year}} </p>
+                <p class="card-text">Exterior: {{this.color}} </p>
+                <p class="card-text">Miles: {{this.miles}} miles </p>
+                <p class="card-text">Price: ${{this.price}} </p> <br>
+                
+                <div class="btn-group" role="group">
                 <form id="update-btn" action="/{{this.id}}?_method=PUT" method="UPDATE">
                     <input type="hidden" value="true">
                     <button class="admin-btn btn btn-success" type="submit">Update</button>
@@ -70,19 +59,15 @@
                     <input type="hidden" name="sold" value="true">
                     <button class="admin-btn btn btn-warning" type="submit">Sold</button>
                 </form>
-                {{!--
-                <form id="delete-btn" action="/{{this.id}}?_method=PUT" method="POST">
-                    <input type="hidden" name="sold" value="true">
-                </form>--}} {{> cars/delete-car}}
-                <br>
+                
+                {{> cars/delete-car}}
+                </div>
+                </div>
             </div>
             {{/unless}} {{/each}}
         </div>
     </div>
-    <hr>
-    <footer>
-        <p>&copy; B&R Eagle Motors 2017</p>
-    </footer>
+    {{> cars/footer}}
 </div>
 <!-- Custom Script -->
 {{!--

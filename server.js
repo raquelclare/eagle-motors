@@ -5,7 +5,7 @@ var expressValidator = require("express-validator");
 var cookieParser = require("cookie-parser");
 
 //require env package to utilize .env file
-require("dotenv").config();
+// require("dotenv").config();
 
 //authentication packages
 var session = require("express-session");
@@ -24,11 +24,19 @@ app.use(cookieParser());
 // Serve static content for the app from the "public" directory in the application directory
 app.use(express.static("public"));
 
+// var options = {
+//   host: process.env.DB_HOST,
+//   user: process.env.DB_USER,
+//   password: process.env.DB_PASSWORD,
+//   database: process.env.DB_NAME
+// };
+
 var options = {
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME
+  host: "localhost",
+  user: "root",
+  password: "root",
+  port: 8889,
+  database: "cars_db"
 };
 
 var sessionStore = new MySQLStore(options);
